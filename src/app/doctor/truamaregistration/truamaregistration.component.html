@@ -1,0 +1,217 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12  ">
+      <h5 class="text-left">Patient Trauma Registration</h5>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <form [formGroup]="traumaForm" (ngSubmit)="onSubmit()" class="p-4 border rounded bg-light">
+
+
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="name" class="form-label">Name of Patient:</label>
+        <input id="name" formControlName="name" type="text" class="form-control" placeholder="Enter patient name">
+        <div *ngIf="traumaForm.get('name')?.invalid && traumaForm.get('name')?.touched" class="text-danger">
+          Name is required
+        </div>
+      </div>
+      <div class="col-md-6">
+        <label for="gender" class="form-label">Gender:</label>
+        <select id="gender" formControlName="gender" class="form-select">
+          <option value="">Select Gender</option>
+          <option *ngFor="let gen of Gender" [value]="gen.id">{{gen.name}}</option>
+        </select>
+        <div *ngIf="traumaForm.get('gender')?.invalid && traumaForm.get('gender')?.touched" class="text-danger">
+          Gender is required
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="reportingDate" class="form-label">Reporting Date:</label>
+        <input id="reportingDate" formControlName="reportingDate" type="date" class="form-control">
+        <div *ngIf="traumaForm.get('reportingDate')?.invalid && traumaForm.get('reportingDate')?.touched"
+          class="text-danger">
+          Reporting date is required
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <label for="category" class="form-label">Category:</label>
+        <select id="category" formControlName="category" class="form-select" (change)="onCategoryChange()">
+          <option value="">Select Category</option>
+          <option *ngFor="let cat of CaseCat" [value]="cat.id">{{ cat.name }}</option>
+        </select>
+        <div *ngIf="traumaForm.get('category')?.invalid && traumaForm.get('category')?.touched" class="text-danger">
+          Category is required
+        </div>
+      </div>
+
+      <div *ngIf="traumaForm.get('category')?.value === '4'" class="row mb-3">
+        <div class="col-md-6">
+          <label for="medicalEmergencyType" class="form-label">Medical Emergency Type:</label>
+          <select id="medicalEmergencyType" class="form-select" formControlName="medicalEmergencyType"
+            (change)="onMedicalChangetSubcat($event)">
+            <option *ngFor="let option of medicalOptions" [value]="option.id">{{ option.name }}</option>
+          </select>
+          <div
+            *ngIf="traumaForm.get('medicalEmergencyType')?.invalid && traumaForm.get('medicalEmergencyType')?.touched"
+            class="text-danger">
+            Medical Emergency Type is required
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="traumaForm.get('category')?.value === '4'" class="row mb-3">
+        <div class="col-md-6">
+          <label for="medicalEmergencySubType" class="form-label">Medical Emergency Sub Type:</label>
+          <select id="medicalEmergencySubType" multiple class="form-select" (change)="onMedicalChange($event)">
+            <option *ngFor="let subOption of SubmedicalOptions" [value]="subOption.subId">{{ subOption.name }}</option>
+          </select>
+          <div
+            *ngIf="traumaForm.get('medicalEmergencySubType')?.invalid && traumaForm.get('medicalEmergencySubType')?.touched"
+            class="text-danger">
+            Medical Emergency Sub Type is required
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div *ngIf="selectedMedicalOptions.size > 0" >
+            <label class="form-label">Selected Options:</label>
+            <div>
+              <ng-container *ngFor="let sMOption of selectedMedicalOptionsArray"  >
+                <span class="badge bg-primary me-2">
+                  {{ sMOption.name }}
+                  <button type="button" class="btn-close btn-close-white ms-2" aria-label="Close"
+                    (click)="removeOption(sMOption.id)"></button>
+                </span>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="districtName" class="form-label">District Name:</label>
+        <select id="districtName" formControlName="districtName" class="form-select">
+          <option value="">Select District</option>
+          <option *ngFor="let district of districts" [value]="district.dCode">{{ district.dName }}</option>
+        </select>
+        <div *ngIf="traumaForm.get('districtName')?.invalid && traumaForm.get('districtName')?.touched"
+          class="text-danger">
+          District name is required
+        </div>
+      </div>
+      <div class="col-md-6">
+        <label for="facilityType" class="form-label">Facility Type:</label>
+        <select id="facilityType" formControlName="facilityType" class="form-select">
+          <option value="">Select Facility</option>
+          <option *ngFor="let facilit of facility" [value]="facilit.healthInstituteTypeID">{{
+            facilit.healthInstituteTypeName }}</option>
+        </select>
+        <div *ngIf="traumaForm.get('facilityType')?.invalid && traumaForm.get('facilityType')?.touched"
+          class="text-danger">
+          Facility type is required
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label class="form-label">Is Hospitalize:</label> <br />
+        <div class="form-check form-check-inline">
+          <input type="radio" formControlName="isHospitalize" value="0" class="form-check-input">
+          <label class="form-check-label">Yes</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input type="radio" formControlName="isHospitalize" value="1" class="form-check-input">
+          <label class="form-check-label">No</label>
+        </div>
+        <div *ngIf="traumaForm.get('isHospitalize')?.invalid && traumaForm.get('isHospitalize')?.touched"
+          class="text-danger">
+          Is Hospitalize is required
+        </div>
+      </div>
+      <div class="col-md-6">
+        <label for="patientCondition" class="form-label">Patient Condition:</label>
+        <select id="patientCondition" formControlName="patientCondition" class="form-select">
+          <option value="">Select Patient Condition</option>
+          <option *ngFor="let pt of PatientCondition" [value]="pt.id">{{pt.name}}</option>
+        </select>
+        <div *ngIf="traumaForm.get('patientCondition')?.invalid && traumaForm.get('patientCondition')?.touched"
+          class="text-danger">
+          Patient condition is required
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="typeOfInjuries" class="form-label">Type of Injuries:</label>
+        <select id="typeOfInjuries" formControlName="typeOfInjuries" class="form-select">
+          <option value="">Select Type of Injuries</option>
+          <option *ngFor="let typeI of TypeInjury" [value]="typeI.id">{{typeI.name}}</option>
+        </select>
+        <div *ngIf="traumaForm.get('typeOfInjuries')?.invalid && traumaForm.get('typeOfInjuries')?.touched"
+          class="text-danger">
+          Type of injuries is required
+        </div>
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Age:</label>
+        <div class="col-md-12 d-flex gap-3">
+          <input formControlName="ageYears" type="number" class="form-control" placeholder="Years">
+          <input formControlName="ageMonths" type="number" class="form-control" placeholder="Months">
+          <input formControlName="ageDays" type="number" class="form-control" placeholder="Days">
+          <div
+            *ngIf="(traumaForm.get('ageYears')?.invalid || traumaForm.get('ageMonths')?.invalid || traumaForm.get('ageDays')?.invalid) && traumaForm.get('ageYears')?.touched"
+            class="text-danger">
+            Age fields are required
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="transferMode" class="form-label">Transfer Mode:</label>
+        <select id="transferMode" formControlName="transferMode" class="form-select">
+          <option value="">-Select-</option>
+          <option value="1">Transferred in / Referred in</option>
+          <option value="2">Transferred Out / Referred Out</option>
+        </select>
+        <div *ngIf="traumaForm.get('transferMode')?.invalid && traumaForm.get('transferMode')?.touched"
+          class="text-danger">
+          Transfer mode is required
+        </div>
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Is Reported in IRAD:</label><br>
+        <div class="form-check form-check-inline">
+          <input type="radio" formControlName="isReportedInIRAD" value="0" class="form-check-input">
+          <label class="form-check-label">Yes</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input type="radio" formControlName="isReportedInIRAD" value="1" class="form-check-input">
+          <label class="form-check-label">No</label>
+        </div>
+        <div *ngIf="traumaForm.get('isReportedInIRAD')?.invalid && traumaForm.get('isReportedInIRAD')?.touched"
+          class="text-danger">
+          Reported in IRAD is required
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center">
+      <button type="submit" class="btn btn-primary" [disabled]="traumaForm.invalid">Submit</button>
+    </div>
+  </form>
+</div>
+<br>

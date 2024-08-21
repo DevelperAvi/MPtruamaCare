@@ -1,0 +1,23 @@
+/* login.component.css */
+.card {
+  margin: 20px;
+  border-radius: 10px;
+}
+
+.card-title {
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .card {
+    margin: 10px;
+  }
+}

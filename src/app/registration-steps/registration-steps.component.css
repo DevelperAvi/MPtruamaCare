@@ -1,0 +1,80 @@
+/* registration-roadmap.component.css */
+.roadmap-container {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  margin: auto;
+  padding: 20px;
+}
+
+.roadmap-steps {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.step {
+  text-align: center;
+  position: relative;
+  flex: 1;
+}
+
+.step-circle {
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  border-radius: 50%;
+  background-color: #e9ecef;
+  color: #495057;
+  font-size: 16px;
+  font-weight: bold;
+  margin: auto;
+  position: relative;
+  z-index: 2;
+}
+
+.step-circle.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.step-label {
+  margin-top: 10px;
+}
+
+.step-content {
+  display: none;
+}
+
+.step-content.active {
+  display: block;
+}
+
+.roadmap-steps::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  border-top: 2px solid #007bff;
+  z-index: 1;
+}
+
+.navigation {
+  text-align: center;
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .step-circle {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+  }
+
+  .navigation {
+    margin-top: 20px;
+  }
+}

@@ -1,0 +1,117 @@
+<div class="container mt-4">
+  <div class="card">
+    <h5 class="card-header bg-secondary text-light text-center">Health Institute Registration</h5>
+    <div class="card-body">
+      <form [formGroup]="healthInstituteForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="healthInstituteName">Name:</label>
+          <input type="text" id="healthInstituteName" formControlName="healthInstituteName" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f['healthInstituteName'].errors }">
+          <div *ngIf="submitted && f['healthInstituteName'].errors" class="invalid-feedback">
+            <div *ngIf="f['healthInstituteName'].errors['required']">Name is required</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="healthInstituteAddress">Address:</label>
+          <input type="text" id="healthInstituteAddress" formControlName="healthInstituteAddress" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f['healthInstituteAddress'].errors }">
+          <div *ngIf="submitted && f['healthInstituteAddress'].errors" class="invalid-feedback">
+            <div *ngIf="f['healthInstituteAddress'].errors['required']">Address is required</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="healthInstituteContactNo">Contact No:</label>
+          <input type="text" id="healthInstituteContactNo" formControlName="healthInstituteContactNo"
+            class="form-control" [ngClass]="{ 'is-invalid': submitted && f['healthInstituteContactNo'].errors }">
+          <div *ngIf="submitted && f['healthInstituteContactNo'].errors" class="invalid-feedback">
+            <div *ngIf="f['healthInstituteContactNo'].errors['required']">Contact No is required</div>
+            <div *ngIf="f['healthInstituteContactNo'].errors['pattern']">Contact No must be a valid number</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="healthInstituteContactPerson">Contact Person:</label>
+          <input type="text" id="healthInstituteContactPerson" formControlName="healthInstituteContactPerson"
+            class="form-control" [ngClass]="{ 'is-invalid': submitted && f['healthInstituteContactPerson'].errors }">
+          <div *ngIf="submitted && f['healthInstituteContactPerson'].errors" class="invalid-feedback">
+            <div *ngIf="f['healthInstituteContactPerson'].errors['required']">Contact Person is required</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="healthInstituteEmailID">Email:</label>
+          <input type="email" id="healthInstituteEmailID" formControlName="healthInstituteEmailID" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f['healthInstituteEmailID'].errors }">
+          <div *ngIf="submitted && f['healthInstituteEmailID'].errors" class="invalid-feedback">
+            <div *ngIf="f['healthInstituteEmailID'].errors['required']">Email is required</div>
+            <div *ngIf="f['healthInstituteEmailID'].errors['email']">Email must be a valid email address</div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="state">State:</label>
+            <select id="state" formControlName="state" class="form-select" (change)="onStateChange()"
+              [ngClass]="{ 'is-invalid': submitted && f['state'].errors }">
+              <option value="">Select State</option>
+              <option *ngFor="let state of states" [value]="state.sCode">{{ state.sName }}</option>
+            </select>
+            <div *ngIf="submitted && f['state'].errors" class="invalid-feedback">
+              <div *ngIf="f['state'].errors['required']">State is required</div>
+              <div *ngIf="f['state'].errors['default']">Please select a valid state</div>
+            </div>
+          </div>
+
+          <div class="form-group col-md-6">
+            <label for="district">District:</label>
+            <select id="district" formControlName="district" class="form-select" (change)="onDistrictChange()"
+              [ngClass]="{ 'is-invalid': submitted && f['district'].errors }">
+              <option value="">Select District</option>
+              <option *ngFor="let district of districts" [value]="district.dCode">{{ district.dName }}</option>
+            </select>
+            <div *ngIf="submitted && f['district'].errors" class="invalid-feedback">
+              <div *ngIf="f['district'].errors['required']">District is required</div>
+              <div *ngIf="f['district'].errors['default']">Please select a valid district</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="policeStation">Police Station:</label>
+            <select id="policeStation" formControlName="policeStation" class="form-select"
+              [ngClass]="{ 'is-invalid': submitted && f['policeStation'].errors }">
+              <option value="">Select Police Station</option>
+              <option *ngFor="let station of policeStations" [value]="station.pScode">{{ station.psDetail }}</option>
+            </select>
+            <div *ngIf="submitted && f['policeStation'].errors" class="invalid-feedback">
+              <div *ngIf="f['policeStation'].errors['required']">Police Station is required</div>
+              <div *ngIf="f['policeStation'].errors['default']">Please select a valid police station</div>
+            </div>
+          </div>
+
+          <div class="form-group col-md-6">
+            <label for="instituteType">Health Institute Type:</label>
+            <select id="instituteType" formControlName="instituteType" class="form-select"
+              [ngClass]="{ 'is-invalid': submitted && f['instituteType'].errors }">
+              <option value="">Select Institute Type</option>
+              <option *ngFor="let type of instituteTypes" [value]="type.healthInstituteTypeID">{{
+                type.healthInstituteTypeName }}</option>
+            </select>
+            <div *ngIf="submitted && f['instituteType'].errors" class="invalid-feedback">
+              <div *ngIf="f['instituteType'].errors['required']">Health Institute Type is required</div>
+              <div *ngIf="f['instituteType'].errors['default']">Please select a valid institute type</div>
+            </div>
+          </div>
+        </div>
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary m-2"
+            [ngClass]="{ 'btn-disabled': !healthInstituteForm.valid && submitted }">Submit</button>
+          <button type="button" class="btn btn-secondary m-2" (click)="onReset()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

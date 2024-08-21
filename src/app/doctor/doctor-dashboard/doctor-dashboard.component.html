@@ -1,0 +1,49 @@
+<div class="container mh-100 mt-5">
+  <div class="row justify-content-right">
+    <div class="col-md-6 col-sm-12"></div>
+      <div class="col-md-6 col-sm-12">
+      <div class="card">
+        <div class="card-body" *ngIf="loading">
+          <p>Loading...</p>
+        </div>
+        <div class="card-body" *ngIf="error">
+          <p class="text-danger">{{ error }}</p>
+        </div>
+        <div class="card-body" *ngIf="!loading && !error">
+          <div class="row">
+            <div class="col-md-12">
+              <p><strong>Name:</strong> {{ doctorDetails.firstName }} {{ doctorDetails.lastName }}</p>
+            </div>
+            <div class="col-md-12">
+              <p><strong>Email:</strong> {{ doctorDetails.email }}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <p><strong>Specialty:</strong> {{ doctorDetails.specialty }}</p>
+            </div>
+            <div class="col-md-12 ">
+              <p><strong>Contact:</strong> {{ doctorDetails.phoneNumber }}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <p><strong>Address:</strong> {{ doctorDetails.address }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+</div>

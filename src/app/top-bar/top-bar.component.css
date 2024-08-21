@@ -1,0 +1,40 @@
+/* top-bar.component.css */
+.wrapper {
+  background-color: #f8f9fa; /* Light background color for the top bar */
+
+}
+
+.make-accessible-header .navbar {
+  padding: 0;
+}
+
+.navbar-nav .nav-link {
+   padding: 0.5rem 1rem;
+}
+
+.navbar-nav .nav-link img {
+  max-width: 24px;
+  height: auto;
+}
+
+.dropdown-menu {
+  min-width: 200px;
+}
+
+@media (max-width: 768px) {
+  .d-md-none {
+    display: none;
+  }
+}
+
+@media (min-width: 769px) {
+  .d-md-inline {
+    display: inline;
+  }
+}
+
+/* Adjustments for dropdown alignment */
+.dropdown-menu {
+  right: 0;
+  left: auto;
+}

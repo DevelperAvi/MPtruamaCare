@@ -1,0 +1,27 @@
+<!-- login.component.html -->
+<div class="container min-vh-100">
+  <div class="row justify-content-center align-items-center ">
+    <div class="col-md-6 col-sm-12">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div class="d-flex align-items-center justify-content-center">
+            <i class="bi bi-person-circle" style="font-size: 5rem;"></i>
+          </div>
+
+          <h1 class="card-title text-center"> Login</h1>
+          <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input type="text" id="username" name="username" class="form-control" [(ngModel)]="username" required>
+            </div><br />
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" id="password" name="password" class="form-control" [(ngModel)]="password" required>
+            </div><br />
+            <button type="submit" class="btn btn-primary btn-block">Login</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

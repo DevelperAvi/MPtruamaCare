@@ -1,0 +1,17 @@
+<!-- registration-roadmap.component.html -->
+<div class="container">
+  <div class="roadmap-container">
+  <div class="roadmap-steps">
+    <div *ngFor="let step of steps; let i = index" class="step">
+      <div class="step-circle" [ngClass]="{'active': currentStep === i}">
+        {{ i + 1 }}
+      </div>
+      <div class="step-label">{{ step.label }}</div>
+      <div class="step-content" *ngIf="currentStep === i">
+        <h4>Step {{ i + 1 }}</h4>
+        <p>{{ step.content }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

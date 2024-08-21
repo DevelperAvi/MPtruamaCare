@@ -1,0 +1,28 @@
+/* You can add global styles to this file, and also import other style files */
+*{
+  margin: 0px;
+  padding: 0px;
+
+}
+
+.body{
+ font-size: medium;
+}
+
+/* styles.scss */
+html {
+  font-size: 16px;
+}
+
+body {
+  font-size: 0.9rem;
+}
+
+h1 {
+  font-size: 1rem;
+}
+
+p {
+  font-size: 1rem;
+}
+

@@ -1,0 +1,37 @@
+/* Ensure that labels and dropdowns align correctly */
+.form-group label {
+  font-weight: bold;
+}
+
+.form-row .form-group {
+  margin-bottom: 1rem; /* Adjust margin as needed */
+}
+
+/* Optional: Ensure the dropdowns take full width in their columns */
+.form-control {
+  width: 100%;
+}
+
+/* Optional: Ensure alignment in smaller viewports */
+@media (max-width: 767px) {
+  .form-row .form-group {
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* Add red border for invalid input fields */
+.is-invalid {
+  border-color: #dc3545; /* Red border color */
+}
+
+/* Add red color for invalid feedback messages */
+.invalid-feedback {
+  color: #dc3545; /* Red text color */
+}
+
+.btn-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+

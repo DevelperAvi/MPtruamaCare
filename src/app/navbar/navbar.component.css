@@ -1,0 +1,28 @@
+.navbar {
+  margin-bottom: 20px;
+}
+
+.nav-link.active {
+  font-weight: bold;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+}
+
+.navbar-nav .dropdown-menu {
+  background-color: #f8f9fa; /* Light background for dropdown items */
+}
+
+.navbar-nav .dropdown-item {
+  color: #212529; /* Text color for dropdown items */
+}
+
+.navbar-nav .dropdown-item:hover {
+  background-color: #e9ecef; /* Background color on hover */
+}
+.navbar-nav .nav-item .dropdown-menu {
+  right: 0;
+  left: auto;
+}
+

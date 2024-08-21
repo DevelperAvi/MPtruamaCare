@@ -1,0 +1,33 @@
+
+.apptitle {
+  font-family: 'Roboto Slab', serif; /* Use the designer font */
+  font-weight: 700; /* Bold text */
+  font-size: 2rem; /* Adjust the font size to your preference */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Soft shadow for depth */
+  color: #333; /* Dark color for better readability */
+  margin: 0; /* Adjust margins as needed */
+  padding: 0.5rem; /* Add padding for spacing */
+}
+
+
+/* styles.css */
+.img-max-h-sm {
+  max-height: 130px; /* For small screens */
+  object-fit: cover;
+}
+
+.img-max-h-md {
+  max-height: 250px; /* For medium screens */
+  object-fit: cover;
+}
+
+.img-max-h-lg {
+  max-height: 350px; /* For large screens */
+  object-fit: cover;
+}
+
+.img-max-h-xl {
+  max-height: 450px; /* For extra large screens */
+  object-fit: cover;
+}
+

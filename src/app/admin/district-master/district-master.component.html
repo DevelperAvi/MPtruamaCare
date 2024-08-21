@@ -1,0 +1,43 @@
+<!-- district-master.component.html -->
+
+<div class="container">
+  <form [formGroup]="districtForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="stateId">State</label>
+      <select id="stateId" formControlName="stateId" class="form-select " [(ngModel)]="selectedStateId" (ngModelChange)="onStateSelectionChange()">
+        <option value="0">-Select-</option>
+        <option *ngFor="let state of states" [value]="state.sCode">{{ state.sName }}</option>
+      </select>
+      <div *ngIf="districtForm.get('stateId')?.invalid && (districtForm.get('stateId')?.touched)">
+        <small *ngIf="districtForm.get('stateId')?.errors?.['required']" class="text-danger">State is required.</small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="dname">District Name</label>
+      <input id="dname" formControlName="dname" class="form-control" />
+      <div *ngIf="districtForm.get('dname')?.invalid && (districtForm.get('dname')?.touched)">
+        <small *ngIf="districtForm.get('dname')?.errors?.['required']" class="text-danger">District Name is
+          required.</small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="dcode">District Code</label>
+      <input id="dcode" formControlName="dcode" class="form-control" />
+      <div *ngIf="districtForm.get('dcode')?.invalid && (districtForm.get('dcode')?.touched)">
+        <small *ngIf="districtForm.get('dcode')?.errors?.['required']" class="text-danger">District Code is
+          required.</small>
+        <small *ngIf="districtForm.get('dcode')?.errors?.['maxlength']" class="text-danger">District Code cannot be
+          longer than 10 characters.</small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="isActive">Active</label>
+      <input id="isActive" type="checkbox" formControlName="isActive" />
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="districtForm.invalid">Submit</button>
+  </form>
+</div>

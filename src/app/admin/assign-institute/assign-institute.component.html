@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h2 class="panel-title">Assign Health Institute</h2>
+    </div>
+    <div class="panel-body">
+      <form #assignForm="ngForm" (ngSubmit)="onMap()" novalidate>
+
+        <!-- District Dropdown -->
+        <div class="form-group">
+          <label for="district">Select District</label>
+          <select id="district" class="form-control" [(ngModel)]="selectedDistrict" name="district" (ngModelChange)="onDistrictChange($event)" required>
+            <option value="" disabled selected>Select a district</option>
+            <option *ngFor="let district of districts" [value]="district.dCode">{{ district.dName }}</option>
+          </select>
+          <div *ngIf="assignForm.submitted && !selectedDistrict" class="text-danger">District is required.</div>
+        </div>
+
+        <!-- Health Institute Dropdown -->
+        <div class="form-group">
+          <label for="healthInstitute">Select Health Institute</label>
+          <select id="healthInstitute" class="form-control" [(ngModel)]="selectedHealthInstitute" name="healthInstitute" required>
+            <option value="" disabled selected>Select a health institute</option>
+            <option *ngFor="let institute of healthInstitutes" [value]="institute.healthInstituteID">{{ institute.healthInstituteName }}</option>
+          </select>
+          <div *ngIf="assignForm.submitted && !selectedHealthInstitute" class="text-danger">Health Institute is required.</div>
+        </div>
+
+        <!-- User Dropdown -->
+        <div class="form-group">
+          <label for="user">Select User</label>
+          <select id="user" class="form-control" [(ngModel)]="selectedUser" name="user" required>
+            <option value="" disabled selected>Select a user</option>
+            <option *ngFor="let user of users" [value]="user.userid">{{ user.email }}</option>
+          </select>
+          <div *ngIf="assignForm.submitted && !selectedUser" class="text-danger">User is required.</div>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary">Map Institute</button>
+      </form>
+    </div>
+  </div>
+</div>

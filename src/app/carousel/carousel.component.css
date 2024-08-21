@@ -1,0 +1,5 @@
+/* styles.css or carousel.component.css */
+.img-60vh {
+  height: 60vh;
+  object-fit: cover; /* Optional: ensures the image covers the area without distortion */
+}
